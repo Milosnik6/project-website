@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Galeria zdjęć</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/png" href="icon.png">
+</head>
+<body>
+	<script type="text/javascript">
+		function uruchomKalkulator() {
+			window.open("../calc/kalkulator.html", "_self");
+		}
+		
+		function uruchomZegar() {
+			window.open("../clock/zegar.html", "_self");
+		}
+		
+		let i = 1;
+			
+		function klik(element){
+		let image = document.getElementById("obraz").src;
+			switch(element){
+				case 'lewo':
+					i--;
+					if(i==0){
+						i=5;
+					}
+					document.getElementById("obraz").src="image"+i+".jpg";
+					console.log(i);
+				break;
+				
+				case 'prawo':
+					i++;
+					if(i==6){
+						i=1;
+					}
+					document.getElementById("obraz").src="image"+i+".jpg";
+					console.log(i);
+				break;
+			}
+		}
+		
+		
+	</script>
+	
+	<div id="main-container">	
+
+		<header>
+			<h1>Obrazy oko cieszące</h1>
+		</header>
+
+		<div id="middle-container"> 
+			<div onClick="klik('lewo')" class="button" id="left-button">
+				<img class="strzalka" src="strzalkal.png">
+			</div>
+			
+			<div id="center-container">
+				<img src="image1.jpg" id="obraz" class="image">
+			</div>
+			
+			<div onClick="klik('prawo')"  class="button" id="right-button">
+				<img class="strzalka" src="strzalkap.png">
+			</div>
+		</div>
+
+		<div id="bottom-buttons-container">
+			<aside onclick="uruchomKalkulator()">
+				<h3 id="bottom-info">Kalkulator</h3>
+			</aside>
+				
+				
+			<section onclick="uruchomZegar()">
+				<h3 id="bottom-info">Zegar</h3>
+			</section>
+		</div>
+
+		<footer>
+			<p>Autor strony: <b>Miłosz Józefczyk</b></p>
+		</footer>
+			
+	</div>
+</body>
+</html>

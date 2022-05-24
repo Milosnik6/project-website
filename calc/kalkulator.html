@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Kalkulator</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/png" href="icon.png">
+<body>
+	<script type="text/javascript">
+	
+		function uruchomZegar() {
+			window.open("../clock/zegar.html", "_self");
+		}
+		
+		function uruchomGalerie() {
+			window.open("../galery/Galeria.html", "_self");
+		}
+	
+		function dane(zmienna){
+			let wynik = zmienna;
+			document.getElementById("screen").value+=wynik;
+		}
+		
+		let wynik = 0;
+		let dzialanie;
+	
+		function licz(argument){
+			let liczby = document.getElementById("screen").value;
+			let end;
+			if (!Number.isNaN(parseFloat(liczby))) {
+				end = parseFloat(liczby);
+			}
+			else {
+				end = 0; 
+			}
+					switch(argument){
+						case '+':
+							wynik += end;
+							dzialanie = "dodawanie"
+							document.getElementById("screen").value="";
+						break;
+						
+						case '-':
+							document.getElementById("screen").value="";
+							if (wynik == 0 ) {
+								wynik = end;
+							}
+							else {
+								wynik -= end;
+							}
+							dzialanie = "odejmowanie"
+						break;
+						
+						case '/':
+							document.getElementById("screen").value="";
+								if (wynik == 0) {
+									wynik = end;
+								}
+								else {
+									wynik /= end;
+								}
+							dzialanie = "dzielenie";
+						break;
+					
+						case '=':
+							switch(dzialanie) {
+								case "dodawanie":
+									wynik += end;
+								break;
+								case "odejmowanie":
+									wynik -= end;
+								break;
+								case "mnozenie":
+									wynik *= end;
+								break;
+								case "dzielenie":
+									wynik /= end;
+								break;
+							}
+							document.getElementById("screen").value = wynik;
+							wynik = 0;
+						break;
+					
+						case '*':
+							document.getElementById("screen").value="";
+							dzialanie = "mnozenie";
+							if (wynik == 0) {
+								wynik = 1;
+							}
+							wynik *= end;
+						break;
+					
+						case 'C':
+							wynik = 0;
+							document.getElementById("screen").value = "";
+						break;
+					
+						case '+/-':
+							end *= (-1)
+							document.getElementById("screen").value = end;
+						break;
+				
+						case 'x^2':
+							let potega2=end;
+							potega2=potega2*potega2;
+							document.getElementById("screen").value=potega2;
+						break;
+					
+						case 'x^3':
+							let potega3=end;
+							potega3=potega3*potega3*potega3;
+							document.getElementById("screen").value=potega3;
+						break;
+					
+						case 'π':
+							document.getElementById("screen").value="3.1415926535897";
+						break;
+					
+					case '1/x':
+						document.getElementById("screen").value="";
+						if (wynik==0){
+							wynik=1;
+						}
+						wynik=1/end;
+						document.getElementById("screen").value=wynik;
+					break;
+					
+					case '√x':
+						document.getElementById("screen").value=""
+						if(wynik==0){
+						 wynik=1;
+						}
+						wynik = Math.sqrt(end);
+						document.getElementById("screen").value=wynik;
+						dzialanie="pierwiastek";
+					break;
+				}
+		}
+	
+			
+		</script>
+	
+	<div id="main-container">	
+		<header>
+			<h1>Kalkulator</h1>
+		</header>
+	
+	<div id="middle-container">
+		<input id="screen" placeholder="=" disabled="disabled" type="number">
+		<table>
+			<tr>
+					<td colspan="2"><input onClick="licz('C')" class="przycisk" type="button" id="czysc" value="C"></td>
+					<td><input onClick="licz('π')" class="przycisk" type="button" id="procent" value="π"></td>
+					<td><input onClick="licz('x^2')" class="przycisk" type="button" id="kwadrat" value="x^2"></td>
+			</tr>
+			
+			<tr>
+					<td><input onClick="licz('√x')" class="przycisk" type="button" id="pierwiastek" value="√x"></td> 
+					<td><input onClick="licz('1/x')" class="przycisk" type="button" id="odwrocenie" value="1/x"></td> 
+					<td><input onClick="licz('x^3')" class="przycisk" type="button" id="ptegatrzy" value="x^3"></td> 
+					<td><input onClick="licz('/')" class="przycisk" type="button" id="dzielenie" value="/"></td>
+			</tr>
+			
+			<tr>
+					<td><input OnClick="dane(1)" class="przycisk" type="button" id="jeden" value="1"></td> 
+					<td><input onClick="dane(2)" class="przycisk" type="button" id="dwa" value="2"></td> 
+					<td><input onClick="dane(3)" class="przycisk" type="button" id="trzy" value="3"></td> 
+					<td><input onClick="licz('*')" class="przycisk" type="button" id="mnoz" value="*"></td>
+			</tr>
+			
+			<tr>
+					<td><input onClick="dane(4)" class="przycisk" type="button" id="cztery" value="4"></td> 
+					<td><input onClick="dane(5)" class="przycisk" type="button" id="piec" value="5"></td> 
+					<td><input onClick="dane(6)" class="przycisk" type="button" id="szesc" value="6"></td>
+					<td><input onClick="licz('-')" class="przycisk" type="button" id="minus" value="-"></td>
+			</tr>
+			
+			<tr>
+					<td><input onClick="dane(7)" class="przycisk" type="button" id="siedem" value="7"></td> 
+					<td><input onClick="dane(8)"class="przycisk" type="button" id="osiem" value="8"></td> 
+					<td><input onClick="dane(9)" class="przycisk" type="button" id="dziewiec" value="9"></td> 
+					<td><input onClick="licz('+')" class="przycisk" type="button" id="plus" value="+"></td>
+			</tr>
+			
+			<tr>
+					<td><input onClick="licz('+/-')" class="przycisk" type="button" id="plusminus" value="+/-"></td> 
+					<td><input onClick="dane(0)" class="przycisk" type="button" id="zero" value="0"></td> 
+					<td colspan="2" ><input onClick="licz('=')" class="przycisk" type="button" id="rowne" value="="></td> 
+			</tr>
+		</table>
+	</div>
+	
+	<div id="bottom-buttons-container">
+		<aside onClick="uruchomZegar()">
+			<h3 id="buttom-info">Zegar</h3>
+		</aside>
+		
+		<section onClick="uruchomGalerie()">
+			<h3 id="buttom-info">Galeria</h3>
+		</section>
+	</div>
+	
+		<footer>
+			<p>Autor strony: <b>Miłosz Józefczyk</b></p>
+		</footer>
+	</div>
+</body>
+</html>

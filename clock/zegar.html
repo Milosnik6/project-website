@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Zegar</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/png" href="icon.png">
+<body>
+	<div id="main-container">
+		
+		<header>
+			<h1>Zegar</h1>
+		</header>
+		
+		<div id="middle-container">
+			<div id="zegar">
+				<div id="wgod"></div>
+				<div id="wmin"></div>
+				<div id="wsek"></div>
+				<div id="kropka"></div>
+				<div id="numer1">1</div>
+				<div id="numer2">2</div>
+				<div id="numer3">3</div>
+				<div id="numer4">4</div>
+				<div id="numer5">5</div>
+				<div id="numer6">6</div>
+				<div id="numer7">7</div>
+				<div id="numer8">8</div>
+				<div id="numer9">9</div>
+				<div id="numer10">10</div>
+				<div id="numer11">11</div>
+				<div id="numer12">12</div>	
+			</div>
+		</div>
+		
+	<div id="bottom-buttons-container">
+		<aside onclick="uruchomKalkulator()">
+				<h3 id="bottom-info">Kalkulator</h3>
+		</aside>
+		
+		<section onclick="uruchomGalerie()">
+				<h3 id="bottom-info">Galeria</h3>
+		</section>
+	</div>
+		<footer>
+			<p>Autor strony: <b>Miłosz Józefczyk</b></p>
+		</footer>
+	</div>	
+	
+	<script type="text/javascript">
+		setInterval(Czas,1000)
+		
+		
+		let sekunda = document.getElementById("wsek");
+		let minuta = document.getElementById("wmin");
+		let godzina = document.getElementById("wgod");
+		
+		function Czas(){
+			let aktData = new Date()
+			let sekR = aktData.getSeconds() /60
+			let minR = (sekR + aktData.getMinutes()) /60
+			let godR = (minR + aktData.getHours()) /12
+			Obroc(sekunda,sekR*360);
+			Obroc(minuta,minR*360);
+			Obroc(godzina,godR*360);
+		}	
+		
+		function Obroc(element, kat){
+			element.style.transform = "rotate(" + kat + "deg)";
+		}
+		Czas();
+
+		function uruchomKalkulator() {
+			window.open("../calc/kalkulator.html", "_self");
+		}
+		
+		function uruchomGalerie() {
+			window.open("../galery/Galeria.html", "_self");
+		}
+	</script>
+</body>
+</html>
